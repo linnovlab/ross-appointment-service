@@ -1,0 +1,5 @@
+export enum TypeConsulation {
+  PHYSICAL = 'PHYSICAL',
+  VIDEOCALL = 'VISIOCONFERENCE',
+  PHONECALL = 'PHONECALL',
+}

@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  appointment-service:
+    build: .
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${MONGO_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST_DOCKER}
+      REDIS_PORT: ${REDIS_PORT}
+    depends_on:
+      - mongodb
+      - redis
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+
+volumes:
+  mongodb_data:

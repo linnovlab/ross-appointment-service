@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointments-deployment
+  namespace: kong
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appointments
+  template:
+    metadata:
+      labels:
+        app: appointments
+    spec:
+      containers:
+        - name: appointments
+          image: devlinnovlab/appointments-service:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: MONGO_DB_URL
+              value: "mongodb+srv://brice:Qwerty123@testcluster.ggw7xsz.mongodb.net"
+            - name: REDIS_HOST_DOCKER
+              value: 'redis-service'
+            - name: REDIS_PORT
+              value: '6379'
