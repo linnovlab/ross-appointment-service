@@ -3,6 +3,7 @@ import {
   IsBoolean,
   IsEnum,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
@@ -35,11 +36,12 @@ export class CreateAppointmentDto {
   @Field({ nullable: false })
   translatorId: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
   @Field({ nullable: false })
   duration: number;
 
+  // 2024-06-18 12:32:46
   @IsString()
   @IsNotEmpty()
   @Field({ nullable: false })
@@ -50,7 +52,6 @@ export class CreateAppointmentDto {
   @Field(() => String, { nullable: true })
   note: string;
 
-  @IsString()
   @IsOptional()
   @Field(() => [String], { nullable: true })
   documentId: string[];

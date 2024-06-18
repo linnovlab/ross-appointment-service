@@ -20,7 +20,7 @@ spec:
             - containerPort: 5000
           env:
             - name: MONGO_DB_URL
-              value: "mongodb+srv://brice:Qwerty123@testcluster.ggw7xsz.mongodb.net"
+              value: 'mongodb+srv://brice:Qwerty123@testcluster.ggw7xsz.mongodb.net'
             - name: REDIS_HOST_DOCKER
               value: 'redis-service'
             - name: REDIS_PORT

@@ -55,7 +55,7 @@ input FilterAppointmentDto {
 }
 
 type Mutation {
-  createTranslator(appointmentDTO: CreateAppointmentDto!): Appointment!
+  createAppointment(appointmentDTO: CreateAppointmentDto!): Appointment
 }
 
 type Pagination {

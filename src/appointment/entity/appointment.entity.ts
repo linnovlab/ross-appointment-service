@@ -40,7 +40,6 @@ export class Appointment {
   @Field(() => String, { nullable: true })
   note: string;
 
-  @Prop({ unique: true })
   @Field(() => [String], { nullable: true })
   documentId: string[];
 

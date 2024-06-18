@@ -30,8 +30,8 @@ export class AppointmentResolver {
     return await this.appointmentService.findAppointmentById(id);
   }
 
-  @Mutation(() => Appointment)
-  async createTranslator(
+  @Mutation(() => Appointment, { nullable: true })
+  async createAppointment(
     @Args('appointmentDTO') data: CreateAppointmentDto,
   ): Promise<Appointment> {
     return await this.appointmentService.createAppointment(data);

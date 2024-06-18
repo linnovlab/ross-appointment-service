@@ -107,8 +107,10 @@ export class AppointmentService {
     appointment: CreateAppointmentDto,
   ): Promise<Appointment> {
     try {
-      const newUser = new this.appointmentModel(appointment);
-      return await newUser.save();
+      const newAppoitment = new this.appointmentModel(appointment);
+      return newAppoitment.save().then((res) => {
+        return res;
+      });
     } catch (error) {}
   }
 }
