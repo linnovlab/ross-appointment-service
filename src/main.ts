@@ -18,8 +18,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // cors configs
   app.enableCors({
-    origin: ['*'],
-    methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   app.use(cors());
@@ -64,6 +65,6 @@ async function bootstrap() {
 
   // Import the filter globally, capturing all exceptions on all routes
   app.useGlobalFilters(new HttpGlobalExceptionFilter());
-  await app.listen(process.env.APP_PORT ||5055);
+  await app.listen(process.env.APP_PORT || 5055);
 }
 bootstrap();

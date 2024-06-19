@@ -82,3 +82,7 @@ echo 'encoded-data' | base64 --decode
 Modifier un secret
 # kubectl edit secret pgcredentials -n kong
 
+
+
+## Deploy the service
+ docker build -t devlinnovlab/appointments-service:latest .; docker push devlinnovlab/appointments-service:latest ; kubectl apply -f .\kubernetes\appointments-deployment.yaml
