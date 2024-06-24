@@ -34,7 +34,7 @@ export class Appointment {
 
   @Prop({ type: Date, default: Date.now, required: true })
   @Field({ nullable: false })
-  datetime: string;
+  datetime: Date;
 
   @Prop()
   @Field(() => String, { nullable: true })
@@ -57,11 +57,11 @@ export class Appointment {
 
   @Prop({ type: Date, default: Date.now })
   @Field({ nullable: true })
-  createdAt: string;
+  createdAt: Date;
 
   @Prop({ type: Date, default: Date.now })
   @Field({ nullable: true })
-  updatedAt: string;
+  updatedAt: Date;
 }
 
 export const AppointmentSchema = SchemaFactory.createForClass(Appointment);
