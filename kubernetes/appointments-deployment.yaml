@@ -15,12 +15,55 @@ spec:
     spec:
       containers:
         - name: appointments
-          image: devlinnovlab/appointments-service1:latest
+          image: devlinnovlab/appointments-service:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 5055
           env:
-            - name: MONGO_DB_URL
-              value: 'mongodb+srv://brice:Qwerty123@testcluster.ggw7xsz.mongodb.net'
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: mongo-username
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: mongo-password
+            - name: MONGO_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: mongo-host
+            - name: MONGO_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: mongo-db-name
+            - name: SALT_ROUND
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: salt-round
+            - name: EXPIREs_IN
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: expires-in
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: jwt-secret-key
+            - name: JWT_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: jwt-private-key
+            - name: JWT_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-service-secrets
+                  key: jwt-public-key
             - name: REDIS_HOST_DOCKER
               value: 'redis-service'
             - name: REDIS_PORT

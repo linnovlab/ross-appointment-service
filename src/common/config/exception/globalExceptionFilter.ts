@@ -20,7 +20,7 @@ export class HttpGlobalExceptionFilter
     const responseMessage = {
       statusCode: status,
       timestamp: new Date().toISOString(),
-      path: gqlHost.getInfo().fieldName,
+      path: gqlHost?.getInfo()?.fieldName,
       message: exception.message || 'Unexpected error occurred',
       errors: exception.getResponse(),
     };
