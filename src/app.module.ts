@@ -22,8 +22,8 @@ import { JwtStrategy } from './auth/jwt.strategy';
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(
-      // process.env.MONGO_DB_URL,
-      `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@testcluster.ggw7xsz.mongodb.net`,
+      process.env.MONGO_DB_URL,
+      // `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@testcluster.ggw7xsz.mongodb.net`,
       {
         dbName: process.env.MONGO_DB_NAME,
       },

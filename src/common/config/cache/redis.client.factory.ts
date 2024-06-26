@@ -5,8 +5,8 @@ export const redisClientFactory: FactoryProvider<Redis> = {
   provide: 'RedisClient',
   useFactory: () => {
     const redisInstance = new Redis({
-      // host: process.env.REDIS_HOST,
-      host: process.env.REDIS_HOST_DOCKER, // docker host
+      host: process.env.REDIS_HOST,
+      // host: process.env.REDIS_HOST_DOCKER, // docker host
       port: +process.env.REDIS_PORT,
     });
 

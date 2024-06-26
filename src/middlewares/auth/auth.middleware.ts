@@ -31,7 +31,7 @@ export class AuthMiddleware implements NestMiddleware {
         secret: process.env.JWT_SECRET_KEY,
       });
       if (!decoded) {
-        throw new UnauthorizedException('User not found');
+        throw new UnauthorizedException('Invalid token');
       }
       next();
     } catch (err: any) {

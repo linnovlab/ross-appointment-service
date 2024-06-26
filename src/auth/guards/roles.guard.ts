@@ -17,7 +17,7 @@ const RoleGuard = (role: Role): Type<CanActivate> => {
       await super.canActivate(context);
 
       const user = request.user;
-      if (!user || !user.role.includes(role)) {
+      if (!user || !user?.role?.includes(role)) {
         throw new UnauthorizedException(
           'You do not have the required authorization.',
         );

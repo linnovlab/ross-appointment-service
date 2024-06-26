@@ -36,6 +36,11 @@ export class CreateAppointmentDto {
   @Field({ nullable: false })
   translatorId: string;
 
+  @IsString()
+  @IsNotEmpty()
+  @Field(() => String, { nullable: false })
+  translatorName: string;
+
   @IsNumber()
   @IsNotEmpty()
   @Field({ nullable: false })

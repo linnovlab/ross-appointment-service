@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: appointments
-          image: devlinnovlab/appointments-service1:latest
+          image: devlinnovlab/appointments-service:latest
           ports:
             - containerPort: 5055
           env:

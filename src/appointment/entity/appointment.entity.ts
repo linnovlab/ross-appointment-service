@@ -28,12 +28,16 @@ export class Appointment {
   @Field({ nullable: false })
   translatorId: string;
 
+  @Prop()
+  @Field(() => String, { nullable: true })
+  translatorName: string;
+
   @Prop({ default: 30, required: true })
   @Field({ nullable: false })
   duration: number;
 
   @Prop({ type: Date, default: Date.now, required: true })
-  @Field({ nullable: false })
+  @Field(() => Date, { nullable: true })
   datetime: Date;
 
   @Prop()
@@ -56,11 +60,11 @@ export class Appointment {
   deleted: boolean;
 
   @Prop({ type: Date, default: Date.now })
-  @Field({ nullable: true })
+  @Field(() => Date, { nullable: true })
   createdAt: Date;
 
   @Prop({ type: Date, default: Date.now })
-  @Field({ nullable: true })
+  @Field(() => Date, { nullable: true })
   updatedAt: Date;
 }
 
