@@ -8,10 +8,7 @@ import { FilterAppointmentDto } from './dto/filter-appointment.dto';
 import { PaginationDto } from 'src/common/shared/utils/pagination/pagination.dto';
 import { CreateAppointmentDto } from './dto/create-appointment.dto';
 import { UseJwt } from 'src/auth/auth.decorator';
-// import { UseGuards } from '@nestjs/common';
-// import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-// import RoleGuard from 'src/auth/guards/roles.guard';
-// import { Role } from 'src/common/shared/enum/role.enum';
+import { UpdateAppointmentDto } from './dto/update-appointment.dto';
 
 @Resolver('Appointment')
 export class AppointmentResolver {
@@ -34,7 +31,6 @@ export class AppointmentResolver {
 
   @Query(() => Appointment, { nullable: true })
   @UseJwt()
-  // @UseGuards(JwtAuthGuard, RoleGuard(Role.CLIENT))
   async findAppointmentById(
     @Args('id', { type: () => ID }) id: string,
   ): Promise<Appointment> {
@@ -47,5 +43,25 @@ export class AppointmentResolver {
     @Args('appointmentDTO') data: CreateAppointmentDto,
   ): Promise<Appointment> {
     return await this.appointmentService.createAppointment(data);
+  }
+
+  @Mutation(() => Appointment, { nullable: true })
+  @UseJwt()
+  async updateAppointment(
+    @Args('id', { type: () => ID }) id: string,
+    @Args('partialAppointmentDto') partialAppointmentDto: UpdateAppointmentDto,
+  ): Promise<Appointment> {
+    return await this.appointmentService.updateAppointment(
+      id,
+      partialAppointmentDto,
+    );
+  }
+
+  @Mutation(() => Appointment, { nullable: true })
+  @UseJwt()
+  async deleteAppointment(
+    @Args('id', { type: () => ID }) id: string,
+  ): Promise<Appointment> {
+    return await this.appointmentService.deleteAppointment(id);
   }
 }

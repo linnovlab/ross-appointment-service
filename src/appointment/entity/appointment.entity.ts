@@ -2,6 +2,7 @@ import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { TypeConsulation } from 'src/common/shared/enum/consultation.enum';
+import { TypeAppointments } from 'src/common/shared/enum/typeAppointment.enum';
 import { Pagination } from 'src/common/shared/utils/pagination/pagination';
 
 export type AppointmentDocument = Appointment & Document;
@@ -58,6 +59,10 @@ export class Appointment {
   @Prop({ default: false })
   @Field({ nullable: true })
   deleted: boolean;
+
+  @Prop({ enum: TypeAppointments })
+  @Field({ nullable: true, defaultValue: TypeAppointments.INCOMING })
+  status: TypeAppointments;
 
   @Prop({ type: Date, default: Date.now })
   @Field(() => Date, { nullable: true })

@@ -14,6 +14,7 @@ type Appointment {
   motif: String!
   note: String
   spokenLanguage: String!
+  status: String
   translatedLanguage: String!
   translatorId: String!
   translatorName: String
@@ -37,6 +38,9 @@ input CreateAppointmentDto {
   motif: String
   note: String
   spokenLanguage: String!
+
+  """Is an enum (INCOMING, PASSED)"""
+  status: String
   translatedLanguage: String!
   translatorId: String!
   translatorName: String!
@@ -57,12 +61,17 @@ input FilterAppointmentDto {
   duration: Float
   motif: String
   spokenLanguage: String
+
+  """Is an enum (INCOMING, PASSED)"""
+  status: String
   translatedLanguage: String
   translatorId: String
 }
 
 type Mutation {
   createAppointment(appointmentDTO: CreateAppointmentDto!): Appointment
+  deleteAppointment(id: ID!): Appointment
+  updateAppointment(id: ID!, partialAppointmentDto: UpdateAppointmentDto!): Appointment
 }
 
 type Pagination {
@@ -81,4 +90,24 @@ input PaginationDto {
 type Query {
   findAllAppointment(filter: FilterAppointmentDto, pagination: PaginationDto): AppointmentListWithMeta!
   findAppointmentById(id: ID!): Appointment
+}
+
+input UpdateAppointmentDto {
+  clientId: String
+
+  """Is and enum (PHYSICAL,VISIOCONFERENCE,PHONECALL)"""
+  consultation: String = "VISIOCONFERENCE"
+  datetime: String
+  deleted: Boolean = false
+  documentId: [String!]
+  duration: Float
+  motif: String
+  note: String
+  spokenLanguage: String
+
+  """Is an enum (INCOMING, PASSED)"""
+  status: String
+  translatedLanguage: String
+  translatorId: String
+  translatorName: String
 }

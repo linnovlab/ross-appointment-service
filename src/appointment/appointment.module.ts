@@ -4,9 +4,10 @@ import { AppointmentResolver } from './appointment.resolver';
 import { MongodbModule } from 'src/common/config/database/mongodb.module';
 import { redisClientFactory } from 'src/common/config/cache/redis.client.factory';
 import { RedisRepository } from 'src/common/config/cache/redis.repository';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [MongodbModule],
+  imports: [MongodbModule, HttpModule],
   providers: [
     AppointmentService,
     AppointmentResolver,

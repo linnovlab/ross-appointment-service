@@ -1,6 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator';
 import { TypeConsulation } from 'src/common/shared/enum/consultation.enum';
+import { TypeAppointments } from 'src/common/shared/enum/typeAppointment.enum';
 
 @InputType()
 export class FilterAppointmentDto {
@@ -53,4 +54,12 @@ export class FilterAppointmentDto {
   @IsOptional()
   @Field({ nullable: true, defaultValue: false })
   deleted?: boolean;
+
+  @IsEnum(TypeAppointments)
+  @IsOptional()
+  @Field({
+    nullable: true,
+    description: 'Is an enum (INCOMING, PASSED)',
+  })
+  status?: TypeAppointments;
 }

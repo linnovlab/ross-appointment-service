@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, InputType, PartialType } from '@nestjs/graphql';
 import {
   IsBoolean,
   IsEnum,
@@ -7,11 +7,12 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
+import { CreateAppointmentDto } from './create-appointment.dto';
 import { TypeConsulation } from 'src/common/shared/enum/consultation.enum';
 import { TypeAppointments } from 'src/common/shared/enum/typeAppointment.enum';
 
 @InputType()
-export class CreateAppointmentDto {
+export class UpdateAppointmentDto extends PartialType(CreateAppointmentDto) {
   @Field({ nullable: true })
   @IsString()
   @IsNotEmpty()
@@ -21,7 +22,7 @@ export class CreateAppointmentDto {
   @IsNotEmpty()
   @IsEnum(TypeConsulation)
   @Field({
-    nullable: false,
+    nullable: true,
     defaultValue: TypeConsulation.VIDEOCALL,
     description: 'Is and enum (PHYSICAL,VISIOCONFERENCE,PHONECALL)',
   })
@@ -29,28 +30,28 @@ export class CreateAppointmentDto {
 
   @IsString()
   @IsNotEmpty()
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   clientId: string;
 
   @IsString()
   @IsNotEmpty()
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   translatorId: string;
 
   @IsString()
   @IsNotEmpty()
-  @Field(() => String, { nullable: false })
+  @Field(() => String, { nullable: true })
   translatorName: string;
 
   @IsNumber()
   @IsNotEmpty()
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   duration: number;
 
   // 2024-06-18 12:32:46
   @IsString()
   @IsNotEmpty()
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   datetime: string;
 
   @IsString()
@@ -64,12 +65,12 @@ export class CreateAppointmentDto {
 
   @IsString()
   @IsNotEmpty()
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   spokenLanguage: string;
 
   @IsString()
   @IsNotEmpty()
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   translatedLanguage: string;
 
   @IsBoolean()
